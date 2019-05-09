@@ -15,4 +15,22 @@ class Field extends Model
     protected $hidden = [
         'client_id', 'user_id', 'field_id', 'contact_id', 'summary_id'
     ];
+
+    // --------------------------------------------------------------------------------------------- //
+    // - Relations
+    // --------------------------------------------------------------------------------------------- //
+    public function client()
+    {
+        return $this->belongsTo('App\Client');
+    }
+
+    public function contact()
+    {
+        return $this->belongsTo('App\Contact');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

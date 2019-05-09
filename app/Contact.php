@@ -15,4 +15,17 @@ class Contact extends Model
     protected $hidden = [
         'client_id', 'active'
     ];
+
+    // --------------------------------------------------------------------------------------------- //
+    // - Relations
+    // --------------------------------------------------------------------------------------------- //
+    public function of_client()
+    {
+        return $this->belongsTo('App\Client');
+    }
+
+    public function fields()
+    {
+        return $this->hasMany('App\Field');
+    }
 }

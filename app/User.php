@@ -16,25 +16,39 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name', 'email', 'password', 'verified', 'verification_token',
-        'owner', 'phone', 'active',
-        'birthdayDate', 'puesto', 'direccion', 'role_id'
+        'phone', 'active', 'birthdayDate', 'puesto', 'direccion', 'role_id'
     ];
 
     protected $hidden = [
         'password', 'remember_token', 'verification_token', 'password', 'active'
     ];
 
-    public function esVerificado() {
-
+    public function esVerificado()
+    {
         return $this->verified == User::USUARIO_VERFICADO;
-
     }
 
 
-    public static function generarVerificationToken() {
-
+    public static function generarVerificationToken()
+    {
         return str_random(40);
-
     }
 
+    // --------------------------------------------------------------------------------------------- //
+    // - Relations
+    // --------------------------------------------------------------------------------------------- //
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    public function clients()
+    {
+        return $this->hasMany('App\Client')->where('active', 1);
+    }
+
+    public function team()
+    {
+        return $this->belongsToMany('App\Team', 'owner_id', 'id');
+    }
 }

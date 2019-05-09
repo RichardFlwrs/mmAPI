@@ -4,17 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Record extends Model
+class File extends Model
 {
     //
 
     protected $fillable = [
-        'order_id', 'numero_cotizacion', 'monto_total', 'temporal'
+        'name', 'location', 'order_id', 'record_id', 'product_id', 'type_id'
     ];
 
     protected $hidden = [
-        'order_id'
+        'owner_id', 'type_id', 'location'
     ];
+
 
     // --------------------------------------------------------------------------------------------- //
     // - Relations
@@ -24,13 +25,18 @@ class Record extends Model
         return $this->belongsTo('App\Order');
     }
 
-    public function files()
+    public function type()
     {
-        return $this->hasMany('App\File', 'record_id');
+        return $this->belongsTo('App\Type');
     }
 
-    public function products()
+    public function product()
     {
-        return $this->hasMany('App\Product')->where('active', 1);
+        return $this->belongsTo('App\Product');
+    }
+
+    public function record()
+    {
+        return $this->belongsTo('App\Record');
     }
 }

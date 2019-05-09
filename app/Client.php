@@ -15,4 +15,17 @@ class Client extends Model
     protected $hidden = [
         'user_id'
     ];
+
+    // --------------------------------------------------------------------------------------------- //
+    // - Relations
+    // --------------------------------------------------------------------------------------------- //
+    public function fields()
+    {
+        return $this->hasMany('App\Field');
+    }
+
+    public function contacts()
+    {
+        return $this->hasMany('App\Contact', 'client_id')->where('active', '<=>', 1);
+    }
 }
