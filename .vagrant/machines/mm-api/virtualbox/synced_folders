@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/MM_API":{"type":null,"mount_options":["uid=1000","gid=1000"],"guestpath":"/home/vagrant/MM_API","hostpath":"C:/Dev/MM_API","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Dev/MM_API","disabled":false,"__vagrantfile":true}}}
